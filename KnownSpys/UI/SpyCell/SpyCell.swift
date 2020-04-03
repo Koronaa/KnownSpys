@@ -1,8 +1,7 @@
 import UIKit
-import CoreData
 
 class SpyCell: UITableViewCell {
-
+    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var nameValueLabel: UILabel!
     @IBOutlet var ageLabel: UILabel!
@@ -10,11 +9,8 @@ class SpyCell: UITableViewCell {
     @IBOutlet var imageContainer: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
-    var spy: Spy!
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-
         commonInit()
     }
     
@@ -45,14 +41,14 @@ extension SpyCell {
 
 //MARK: - Configure
 extension SpyCell {
-    func configure(with spy: Spy) {
+    func configure(with presenter: SpyCellPresenterIMPL) {
         
         getSomeData { [weak self] in
             guard let strongSelf = self else { return }
-
-            strongSelf.set(age: Int(spy.age))
-            strongSelf.set(name: spy.name)
-            strongSelf.add(imageName: spy.imageName)
+            
+            strongSelf.set(age: presenter.age)
+            strongSelf.set(name: presenter.name)
+            strongSelf.add(imageName: presenter.imageName)
         }
     }
     
@@ -75,7 +71,7 @@ extension SpyCell {
 extension SpyCell {
     
     func commonInit() {
-
+        
         setAccessibilityProperties()
         
         if #available(iOS 10, *) {
@@ -148,9 +144,10 @@ extension SpyCell {
         return bundle.loadNibNamed(SpyCell.cellId, owner: owner, options: nil)?.first as! SpyCell
     }
     
-    public static func dequeue(from tableView: UITableView, for indexPath: IndexPath, with spy: Spy) -> SpyCell {
+    public static func dequeue(from tableView: UITableView, for indexPath: IndexPath, with presenter: SpyCellPresenterIMPL) -> SpyCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: SpyCell.cellId, for: indexPath) as! SpyCell
-            cell.configure(with: spy)
+        cell.configure(with: presenter)
         return cell
     }
 }
