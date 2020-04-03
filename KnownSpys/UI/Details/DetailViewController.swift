@@ -1,6 +1,6 @@
 import UIKit
 
-class DetailViewController: UIViewController, SecretDetailsDelegate {
+class DetailViewController: UIViewController {
     
     
     @IBOutlet var profileImage: UIImageView!
@@ -8,50 +8,39 @@ class DetailViewController: UIViewController, SecretDetailsDelegate {
     @IBOutlet var ageLabel: UILabel!
     @IBOutlet var genderLabel: UILabel!
     
-    var spy: Spy!
+    fileprivate var presenter:DetailPresenterIMPL!
+    fileprivate weak var navigationCoordinator:NavigationCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
-
-    func configure(with spy: Spy) {
-        self.spy = spy
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if isMovingFromParent{
+            navigationCoordinator?.movingBack()
+        }
+    }
+    
+    func configure(with presenter: DetailPresenterIMPL,navigationCoordinator:NavigationCoordinator) {
+        self.presenter = presenter
+        self.navigationCoordinator = navigationCoordinator
     }
     
     func setupView() {
-        profileImage.image = UIImage(named: spy.imageName)
-        nameLabel.text = spy.name
-        ageLabel.text  = String(spy.age)
-        genderLabel.text = spy.gender
+        profileImage.image = UIImage(named: presenter.imageName)
+        nameLabel.text = presenter.name
+        ageLabel.text  = String(presenter.age)
+        genderLabel.text = presenter.gender
     }
 }
 
 //MARK: - Touch Events
 extension DetailViewController {
     @IBAction func briefcaseTapped(_ button: UIButton) {
-        let vc = SecretDetailsViewController(with: spy, and: self as SecretDetailsDelegate)
-        
-        navigationController?.pushViewController(vc, animated: true)
+        let args = ["spy":presenter.spy]
+        navigationCoordinator?.next(arguments: args)
     }
 }
-
-//MARK: - SecretDetailsDelegate
-extension DetailViewController {
-    func passwordCrackingFinished() {
-        //close middle layer too
-        navigationController?.popViewController(animated: true)
-    }
-}
-
-//MARK: - Helper Methods
-extension DetailViewController {
-    static func fromStoryboard(with spy: Spy) -> DetailViewController {
-        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            vc.configure(with: spy)
-        
-        return vc
-    }
-}
-

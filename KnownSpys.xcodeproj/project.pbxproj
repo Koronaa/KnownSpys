@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D3DB083242F389100B3E4BE /* SpyListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3DB082242F389100B3E4BE /* SpyListPresenter.swift */; };
+		3D3DB085242F3CDF00B3E4BE /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3DB084242F3CDF00B3E4BE /* DetailsPresenter.swift */; };
+		3D3DB087242F3E5A00B3E4BE /* SecretDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3DB086242F3E5A00B3E4BE /* SecretDetailPresenter.swift */; };
+		3D3DB089242F407800B3E4BE /* SpyCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3DB088242F407800B3E4BE /* SpyCellPresenter.swift */; };
+		3D7B6CDA242F567C00824334 /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B6CD9242F567C00824334 /* TranslationLayer.swift */; };
+		3D7B6CDC242F5B8F00824334 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B6CDB242F5B8F00824334 /* NetworkLayer.swift */; };
+		3D7B6CDE242F5BA600824334 /* DataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B6CDD242F5BA600824334 /* DataLayer.swift */; };
+		3D7B6CE0242F5BD400824334 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B6CDF242F5BD400824334 /* ModelLayer.swift */; };
+		3D7B6CE2242F614700824334 /* SpyTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7B6CE1242F614700824334 /* SpyTranslator.swift */; };
 		3DA45DE8242C91CD00448067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA45DE7242C91CD00448067 /* AppDelegate.swift */; };
 		3DA45DEA242C91CD00448067 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA45DE9242C91CD00448067 /* SceneDelegate.swift */; };
 		3DA45DF4242C91CE00448067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DA45DF3242C91CE00448067 /* Assets.xcassets */; };
@@ -27,12 +36,24 @@
 		3DA45E30242C9CF300448067 /* SpyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA45E2F242C9CF300448067 /* SpyListViewController.swift */; };
 		3DA45E33242C9D1E00448067 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA45E31242C9D1E00448067 /* Extensions.swift */; };
 		3DA45E34242C9D1E00448067 /* RowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA45E32242C9D1E00448067 /* RowType.swift */; };
+		3DD8DD8C2436064800E1A5FE /* RootNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8DD8B2436064800E1A5FE /* RootNavigationCoordinator.swift */; };
+		3DDB449E2430AE0700E72F5C /* SwinjectStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB449C2430AE0700E72F5C /* SwinjectStoryboard+Extensions.swift */; };
+		3DDB449F2430AE0700E72F5C /* DependencyRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB449D2430AE0700E72F5C /* DependencyRegistry.swift */; };
 		BB9DD30F8DF236D9ED2C0C9C /* Pods_KnownSpys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A585D40DF53C6A69DAF7BD4 /* Pods_KnownSpys.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A86AC98EB3C6453617E52C0 /* Pods-KnownSpys.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnownSpys.debug.xcconfig"; path = "Target Support Files/Pods-KnownSpys/Pods-KnownSpys.debug.xcconfig"; sourceTree = "<group>"; };
 		3A585D40DF53C6A69DAF7BD4 /* Pods_KnownSpys.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnownSpys.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D3DB082242F389100B3E4BE /* SpyListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyListPresenter.swift; sourceTree = "<group>"; };
+		3D3DB084242F3CDF00B3E4BE /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
+		3D3DB086242F3E5A00B3E4BE /* SecretDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDetailPresenter.swift; sourceTree = "<group>"; };
+		3D3DB088242F407800B3E4BE /* SpyCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyCellPresenter.swift; sourceTree = "<group>"; };
+		3D7B6CD9242F567C00824334 /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLayer.swift; sourceTree = "<group>"; };
+		3D7B6CDB242F5B8F00824334 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
+		3D7B6CDD242F5BA600824334 /* DataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLayer.swift; sourceTree = "<group>"; };
+		3D7B6CDF242F5BD400824334 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
+		3D7B6CE1242F614700824334 /* SpyTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyTranslator.swift; sourceTree = "<group>"; };
 		3DA45DE4242C91CD00448067 /* KnownSpys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnownSpys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA45DE7242C91CD00448067 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DA45DE9242C91CD00448067 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +76,9 @@
 		3DA45E2F242C9CF300448067 /* SpyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyListViewController.swift; sourceTree = "<group>"; };
 		3DA45E31242C9D1E00448067 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3DA45E32242C9D1E00448067 /* RowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowType.swift; sourceTree = "<group>"; };
+		3DD8DD8B2436064800E1A5FE /* RootNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationCoordinator.swift; sourceTree = "<group>"; };
+		3DDB449C2430AE0700E72F5C /* SwinjectStoryboard+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+Extensions.swift"; sourceTree = "<group>"; };
+		3DDB449D2430AE0700E72F5C /* DependencyRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyRegistry.swift; sourceTree = "<group>"; };
 		B359C5331160B5C929C8FA5F /* Pods-KnownSpys.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnownSpys.release.xcconfig"; path = "Target Support Files/Pods-KnownSpys/Pods-KnownSpys.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D7B6CD8242F566400824334 /* Translation */ = {
+			isa = PBXGroup;
+			children = (
+				3D7B6CD9242F567C00824334 /* TranslationLayer.swift */,
+				3D7B6CE1242F614700824334 /* SpyTranslator.swift */,
+			);
+			path = Translation;
+			sourceTree = "<group>";
+		};
 		3DA45DDB242C91CD00448067 = {
 			isa = PBXGroup;
 			children = (
@@ -91,14 +124,16 @@
 		3DA45DE6242C91CD00448067 /* KnownSpys */ = {
 			isa = PBXGroup;
 			children = (
+				3DD8DD8A2436061B00E1A5FE /* NavigationCoordinators */,
+				3DDB449B2430AE0700E72F5C /* Injection */,
+				3DA45DFE242C969600448067 /* ModelLayer */,
+				3DA45DFF242C96A300448067 /* UI */,
+				3DA45E00242C96AD00448067 /* Supporting Classes */,
 				3DA45DE7242C91CD00448067 /* AppDelegate.swift */,
 				3DA45DE9242C91CD00448067 /* SceneDelegate.swift */,
-				3DA45DF3242C91CE00448067 /* Assets.xcassets */,
-				3DA45E01242C96BB00448067 /* ignore */,
 				3DA45E1F242C9C3000448067 /* Main.storyboard */,
-				3DA45DFE242C969600448067 /* ModelLayer */,
-				3DA45E00242C96AD00448067 /* Supporting Classes */,
-				3DA45DFF242C96A300448067 /* UI */,
+				3DA45E01242C96BB00448067 /* ignore */,
+				3DA45DF3242C91CE00448067 /* Assets.xcassets */,
 			);
 			path = KnownSpys;
 			sourceTree = "<group>";
@@ -106,6 +141,8 @@
 		3DA45DFE242C969600448067 /* ModelLayer */ = {
 			isa = PBXGroup;
 			children = (
+				3D7B6CDF242F5BD400824334 /* ModelLayer.swift */,
+				3D7B6CD8242F566400824334 /* Translation */,
 				3DA45E16242C9B7400448067 /* Network */,
 				3DA45E07242C97B200448067 /* Database */,
 				3DA45E04242C972900448067 /* DTOs */,
@@ -117,10 +154,10 @@
 		3DA45DFF242C96A300448067 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				3DA45E24242C9CAC00448067 /* SpyCell */,
-				3DA45E23242C9C9400448067 /* SecretDetails */,
-				3DA45E22242C9C8800448067 /* Details */,
 				3DA45E21242C9C7100448067 /* SpyList */,
+				3DA45E22242C9C8800448067 /* Details */,
+				3DA45E23242C9C9400448067 /* SecretDetails */,
+				3DA45E24242C9CAC00448067 /* SpyCell */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -155,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				3DA45E08242C97C100448067 /* CoreData */,
+				3D7B6CDD242F5BA600824334 /* DataLayer.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -173,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				3DA45E1C242C9BC500448067 /* MockedWebServer */,
+				3D7B6CDB242F5B8F00824334 /* NetworkLayer.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -190,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				3DA45E2F242C9CF300448067 /* SpyListViewController.swift */,
+				3D3DB082242F389100B3E4BE /* SpyListPresenter.swift */,
 			);
 			path = SpyList;
 			sourceTree = "<group>";
@@ -198,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				3DA45E2D242C9CE400448067 /* DetailViewController.swift */,
+				3D3DB084242F3CDF00B3E4BE /* DetailsPresenter.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -207,6 +248,7 @@
 			children = (
 				3DA45E2A242C9CD600448067 /* SecretDetailsViewController.swift */,
 				3DA45E29242C9CD600448067 /* SecretDetailsViewController.xib */,
+				3D3DB086242F3E5A00B3E4BE /* SecretDetailPresenter.swift */,
 			);
 			path = SecretDetails;
 			sourceTree = "<group>";
@@ -216,8 +258,26 @@
 			children = (
 				3DA45E25242C9CC300448067 /* SpyCell.swift */,
 				3DA45E26242C9CC300448067 /* SpyCell.xib */,
+				3D3DB088242F407800B3E4BE /* SpyCellPresenter.swift */,
 			);
 			path = SpyCell;
+			sourceTree = "<group>";
+		};
+		3DD8DD8A2436061B00E1A5FE /* NavigationCoordinators */ = {
+			isa = PBXGroup;
+			children = (
+				3DD8DD8B2436064800E1A5FE /* RootNavigationCoordinator.swift */,
+			);
+			path = NavigationCoordinators;
+			sourceTree = "<group>";
+		};
+		3DDB449B2430AE0700E72F5C /* Injection */ = {
+			isa = PBXGroup;
+			children = (
+				3DDB449C2430AE0700E72F5C /* SwinjectStoryboard+Extensions.swift */,
+				3DDB449D2430AE0700E72F5C /* DependencyRegistry.swift */,
+			);
+			path = Injection;
 			sourceTree = "<group>";
 		};
 		B704001F5498F14587CEE075 /* Frameworks */ = {
@@ -355,20 +415,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3DB083242F389100B3E4BE /* SpyListPresenter.swift in Sources */,
 				3DA45E2E242C9CE400448067 /* DetailViewController.swift in Sources */,
 				3DA45E30242C9CF300448067 /* SpyListViewController.swift in Sources */,
 				3DA45E14242C998000448067 /* KnownSpys.xcdatamodeld in Sources */,
+				3D7B6CDA242F567C00824334 /* TranslationLayer.swift in Sources */,
 				3DA45E2C242C9CD600448067 /* SecretDetailsViewController.swift in Sources */,
 				3DA45E34242C9D1E00448067 /* RowType.swift in Sources */,
 				3DA45DE8242C91CD00448067 /* AppDelegate.swift in Sources */,
+				3D7B6CDC242F5B8F00824334 /* NetworkLayer.swift in Sources */,
+				3DDB449E2430AE0700E72F5C /* SwinjectStoryboard+Extensions.swift in Sources */,
 				3DA45E06242C973400448067 /* SpyDTO.swift in Sources */,
 				3DA45E1A242C9BC100448067 /* MockedWebServer.swift in Sources */,
+				3DDB449F2430AE0700E72F5C /* DependencyRegistry.swift in Sources */,
 				3DA45E03242C971300448067 /* Enums.swift in Sources */,
 				3DA45E33242C9D1E00448067 /* Extensions.swift in Sources */,
+				3D3DB087242F3E5A00B3E4BE /* SecretDetailPresenter.swift in Sources */,
 				3DA45E12242C998000448067 /* Spy+CoreDataClass.swift in Sources */,
+				3D7B6CE0242F5BD400824334 /* ModelLayer.swift in Sources */,
+				3DD8DD8C2436064800E1A5FE /* RootNavigationCoordinator.swift in Sources */,
+				3D7B6CE2242F614700824334 /* SpyTranslator.swift in Sources */,
+				3D3DB089242F407800B3E4BE /* SpyCellPresenter.swift in Sources */,
 				3DA45E27242C9CC300448067 /* SpyCell.swift in Sources */,
 				3DA45E13242C998000448067 /* Spy+CoreDataProperties.swift in Sources */,
+				3D7B6CDE242F5BA600824334 /* DataLayer.swift in Sources */,
 				3DA45DEA242C91CD00448067 /* SceneDelegate.swift in Sources */,
+				3D3DB085242F3CDF00B3E4BE /* DetailsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +584,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jonbott.KnownSpys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.korona.KnownSpys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -531,7 +603,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jonbott.KnownSpys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.korona.KnownSpys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

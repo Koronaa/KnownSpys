@@ -1,59 +1,51 @@
 import UIKit
 import Toaster
 import Foundation
-import Alamofire
-import CoreData
-import Outlaw
+import RxSwift
+import RxCocoa
+import RxDataSources
 
-
-typealias BlockWithSource = (Source)->Void
-typealias VoidBlock = ()->Void
-typealias SpiesAndSourceBlock = (Source, [Spy])->Void
-typealias SpiesBlock = ([Spy])->Void
-
-class SpyListViewController: UIViewController, UITableViewDataSource ,UITableViewDelegate {
+class SpyListViewController: UIViewController ,UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
     
-    var data = [Spy]()
+    weak var navigationCoordinator:NavigationCoordinator?
+    
+    fileprivate var presenter: SpyListPresenterIMPL!
+    fileprivate var spyCellMaker:DependencyRegistryIMPL.SpyCellMaker!
+    fileprivate var bag = DisposeBag()
+    fileprivate var dataSource:RxTableViewSectionedReloadDataSource<SpySection>!
+    
+    
+    func configure(with presenter:SpyListPresenterIMPL,
+                   navigationCoordinator:NavigationCoordinator,
+                   spyCellMaker: @escaping DependencyRegistryIMPL.SpyCellMaker){
+        self.presenter = presenter
+        self.navigationCoordinator = navigationCoordinator
+        self.spyCellMaker = spyCellMaker
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate   = self
-        
         SpyCell.register(with: tableView)
         
-        loadData { [weak self] source in
+        presenter.loadData { [weak self] source in
             self?.newDataReceived(from: source)
         }
+        
+        initDataSource()
+        initTableView()
+        
     }
     
     func newDataReceived(from source: Source) {
         Toast(text: "New Data from \(source)").show()
         tableView.reloadData()
     }
-}
-
-
-//MARK: - UITableViewDataSource
-extension SpyListViewController {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let spy = data[indexPath.row]
-        
-        let cell = SpyCell.dequeue(from: tableView, for: indexPath, with: spy)
-        
-        return cell
+    @IBAction func updateData(_ sender:Any){
+        presenter.makeSomeDataChange()
     }
 }
 
@@ -63,175 +55,37 @@ extension SpyListViewController {
         return 126
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let spy = data[indexPath.row]
-        
-        let detailViewController = DetailViewController.fromStoryboard(with: spy)
-        
-        navigationController?.pushViewController(detailViewController, animated: true)
+    func next(with spy:SpyDTO){
+        let args = ["spy":spy]
+        navigationCoordinator!.next(arguments: args)
     }
 }
 
-//MARK: - Data Methods
+//MARK: Reactive Process
 extension SpyListViewController {
     
-    func loadData(finished: @escaping BlockWithSource) {
-        loadData { [weak self] source, spies in
-            self?.data = spies
-            finished(source)
-        }
+    func initDataSource(){
+        dataSource = RxTableViewSectionedReloadDataSource<SpySection>(configureCell: { (_, tableview, indexPath, spy) -> UITableViewCell in
+            let cell = self.spyCellMaker(self.tableView,indexPath,spy)
+            return cell
+        },titleForHeaderInSection: {(dataSource, index) in
+            return dataSource.sectionModels[index].header
+        } )
+    }
+    
+    
+    func initTableView(){
+        presenter.sections.asObservable()
+            .bind(to: tableView.rx.items(dataSource: self.dataSource))
+            .disposed(by: bag)
+        
+        tableView.rx.itemSelected.map { indexPath in
+            return (indexPath,self.dataSource[indexPath])
+        }.subscribe(onNext: { (indexPath,spy) in
+            self.next(with: spy)
+        }).disposed(by: bag)
+        
+        tableView.rx.setDelegate(self).disposed(by: bag)
     }
 }
-
-//MARK: - Model Methods
-extension SpyListViewController {
-    
-    func loadData(resultsLoaded: @escaping SpiesAndSourceBlock) {
-        func mainWork() {
-            
-            loadFromDB(from: .local)
-            
-            loadFromServer { data in
-                let dtos = self.createSpyDTOsFromJsonData(data)
-                self.save(dtos: dtos) {
-                    loadFromDB(from: .network)
-                }
-            }
-        }
-        
-        func loadFromDB(from source: Source) {
-            loadFromDBWith { spies in
-                resultsLoaded(source, spies)
-            }
-        }
-        
-        mainWork()
-    }
-}
-
-//MARK: - Network Methods
-extension SpyListViewController {
-    func loadFromServer(finished: @escaping (Data) -> Void) {
-        print("loading data from server")
-        Alamofire.request(URL(string: "http://localhost:8080/spies")!).responseJSON { response in
-            guard let data = response.data else { return }
-            finished(data)
-        }
-    }
-    
-}
-
-//MARK: - Data Methods
-extension SpyListViewController {
-    
-    var appDelegate: AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
-    }
-    
-    var persistentContainer: NSPersistentContainer {
-        return appDelegate.persistentContainer
-    }
-    
-    var mainContext: NSManagedObjectContext {
-        return appDelegate.persistentContainer.viewContext
-    }
-    
-    func save(dtos: [SpyDTO], finished: @escaping () -> Void) {
-        clearOldResults()
-        
-        _ = toUnsavedCoreData(from: dtos, with: mainContext)
-        
-        try! mainContext.save()
-        
-        finished()
-    }
-    
-    func loadFromDBWith(finished: SpiesBlock) {
-        print("loading data locally")
-        let spies = loadSpiesFromDB()
-        finished(spies)
-    }
-}
-
-
-//MARK: - Private Data Methods
-extension SpyListViewController {
-    
-    fileprivate func loadSpiesFromDB() -> [Spy] {
-        let sortOn = NSSortDescriptor(key: "name", ascending: true)
-        
-        let fetchRequest: NSFetchRequest<Spy> = Spy.fetchRequest()
-        fetchRequest.sortDescriptors = [sortOn]
-        
-        let spies = try! persistentContainer.viewContext.fetch(fetchRequest)
-        
-        return spies
-    }
-    
-    //MARK: - Helper Methods
-    fileprivate func clearOldResults() {
-        print("clearing old results")
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Spy.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        try! persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: persistentContainer.viewContext)
-        persistentContainer.viewContext.reset()
-    }
-}
-
-//MARK: - Translation Methods
-extension SpyListViewController {
-    
-    func createSpyDTOsFromJsonData(_ data: Data) -> [SpyDTO] {
-        print("converting json to DTOs")
-        let json:[String: Any] = try! JSON.value(from: data)
-        let spies: [SpyDTO] = try! json.value(for: "spies")
-        return spies
-    }
-    
-    func toUnsavedCoreData(from dtos: [SpyDTO], with context: NSManagedObjectContext) -> [Spy] {
-        print("convering DTOs to Core Data Objects")
-        let spies = dtos.flatMap{ dto in translate(from: dto, with: context) } // keeping it simple by keeping things single threaded
-        
-        return spies
-    }
-    
-    func toSpyDTOs(from spies:[Spy]) -> [SpyDTO] {
-        let dtos = spies.flatMap { translate(from: $0) }
-        
-        return dtos
-    }
-}
-
-//MARK: - Spy Translation Methods
-extension SpyListViewController {
-    
-    func translate(from spy: Spy?) -> SpyDTO? {
-        guard let spy = spy else { return nil }
-        
-        let gender = Gender(rawValue: spy.gender)!
-        
-        return SpyDTO(age: Int(spy.age),
-                      name: spy.name,
-                      gender: gender,
-                      password: spy.password,
-                      imageName: spy.imageName,
-                      isIncognito: spy.isIncognito)
-    }
-    
-    func translate(from dto: SpyDTO?, with context: NSManagedObjectContext) -> Spy? {
-        guard let dto = dto else { return nil }
-        
-        let spy = Spy(context: context)
-        spy.age = Int64(dto.age)
-        spy.name = 	dto.name
-        spy.gender = 	dto.gender.rawValue
-        spy.password = 	dto.password
-        spy.imageName = 	dto.imageName
-        spy.isIncognito = 	dto.isIncognito
-        
-        return spy
-    }
-}
-
 

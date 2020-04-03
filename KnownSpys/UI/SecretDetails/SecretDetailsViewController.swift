@@ -1,25 +1,21 @@
 import UIKit
 
-protocol SecretDetailsDelegate: class {
-    func passwordCrackingFinished()
-}
-
 class SecretDetailsViewController: UIViewController {
-
+    
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var passwordLabel: UILabel!
     
-    var spy: Spy
-    weak var delegate: SecretDetailsDelegate?
+    fileprivate var presenter:SecretDetailPresenterIMPL
+    fileprivate weak var navigationCoordinator:NavigationCoordinator?
     
-    init(with spy: Spy, and delegate: SecretDetailsDelegate?) {
-        self.spy = spy
-        self.delegate = delegate
+    init(with presenter: SecretDetailPresenterIMPL,navigationCoordinator:NavigationCoordinator) {
+        self.presenter = presenter
+        self.navigationCoordinator = navigationCoordinator
         
         super.init(nibName: "SecretDetailsViewController", bundle: nil)
     }
     
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -35,15 +31,21 @@ class SecretDetailsViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if isMovingFromParent{
+            navigationCoordinator?.movingBack()
+        }
+    }
+    
     func showPassword() {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
-        passwordLabel.text = spy.password
+        passwordLabel.text = presenter.password
     }
     
     @IBAction func finishedButtonTapped(_ button: UIButton) {
-        navigationController?.popViewController(animated: true)
-        
-        delegate?.passwordCrackingFinished()
+        navigationCoordinator?.next(arguments: [:])
     }
 }
