@@ -2,7 +2,6 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var ageLabel: UILabel!

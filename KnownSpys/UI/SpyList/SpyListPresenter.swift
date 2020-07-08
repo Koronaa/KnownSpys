@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import RxDataSources
-import RxCocoa
+import RxRelay
 
 
 typealias BlockWithSource = (Source)->Void
@@ -55,9 +55,7 @@ class SpyListPresenterIMPL:SpyListPresenter{
     
     func makeSomeDataChange() {
         let newSpy = SpyDTO(age: 29, name: "Sajith Konara", gender: .male, password: "123", imageName: "AdamSmith", isIncognito: true)
-        var newSpies:[SpyDTO] = []
-        newSpies.append(newSpy)
-        spies.accept(newSpies + spies.value)
+        spies.accept([newSpy] + spies.value)
     }
     
     //MARK: Reactive Observers

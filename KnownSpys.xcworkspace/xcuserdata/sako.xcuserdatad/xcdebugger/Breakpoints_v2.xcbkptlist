@@ -3,4 +3,86 @@
    uuid = "E3F2FA28-ED80-4FC9-804C-EB1C74FB605A"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB273D87-BCAA-459E-8A5B-86541EC1D2FC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnownSpys/ModelLayer/ModelLayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "mainWork()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1500A515-9867-4D79-BE17-6FDD06397195"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnownSpys/ModelLayer/ModelLayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "loadFromDB(from:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "1500A515-9867-4D79-BE17-6FDD06397195 - d34b3f4ea6a947c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "loadFromDB #1 (from: KnownSpys.Source) -&gt; () in KnownSpys.ModelLayerIMPL.loadData(resultsLoaded: (KnownSpys.Source, Swift.Array&lt;KnownSpys.SpyDTO&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KnownSpys"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sako/Documents/Learning/Lynda/Design%20Patterns%20for%20Mobile%20Architecture/KnownSpys/KnownSpys/ModelLayer/ModelLayer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "53">
+               </Location>
+               <Location
+                  uuid = "1500A515-9867-4D79-BE17-6FDD06397195 - 120b5ce01c520b28"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;KnownSpys.Spy&gt;) -&gt; () in loadFromDB #1 (from: KnownSpys.Source) -&gt; () in KnownSpys.ModelLayerIMPL.loadData(resultsLoaded: (KnownSpys.Source, Swift.Array&lt;KnownSpys.SpyDTO&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "KnownSpys"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sako/Documents/Learning/Lynda/Design%20Patterns%20for%20Mobile%20Architecture/KnownSpys/KnownSpys/ModelLayer/ModelLayer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "67">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F9FE77D-D190-4086-9148-2628EA7B7828"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnownSpys/ModelLayer/ModelLayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "mainWork()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
